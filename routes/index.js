@@ -3,6 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 
+router.get("/", (req, res, next) => {
+  res.send("OK cô cô");
+});
+
 router.get(
   "/user/:id",
   function (req, res, next) {
@@ -31,10 +35,51 @@ router.get(
     res.status(200).send(req.transformed);
   }
 );
+// // câu 9
+// router.get(
+//   "/user/:id",
+//   function (req, res, next) {
+//     console.log("although this matches");
+//     next();
+//   },
+//   (req, res, next) => {
+//     req.addOn = "I'm adding on";
+//   },
+//   (req, res, next) => {
+//     if (req.addOn) {
+//       req.transformed = "Added success";
+//     } else {
+//       res.status(500).send("internal server error");
+//     }
+//   },
+//   (req, res) => {
+//     res.status(200).send(req.transformed);
+//   }
+// );
 
-router.get("/", function (req, res, next) {
-  res.send("Hello world");
-});
+// router.get(
+//   "/user/:id",
+//   function (req, res, next) {
+//     console.log("although this matches");
+//     next();
+//   },
+//   (req, res, next) => {
+//     req.addOn = "I'm adding on";
+//     res.send(req.addOn);
+//   },
+//   // thêm khúc sau làm gì?
+//   (req, res, next) => {
+//     if (req.addOn) {
+//       req.transformed = "Added success";
+//     } else {
+//       res.status(500).send("internal server error");
+//     }
+//     next();
+//   },
+//   (req, res) => {
+//     res.status(200).send(req.transformed);
+//   }
+// );
 
 // router.get((req, res, next) => {
 //   const err = new Error("Not found me");

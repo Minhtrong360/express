@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+console.log("first", process.env.PORT);
 // app.use("/", indexRouter);
 // app.use("/users", usersRouter);
 // app.use((req, res, next) => {
@@ -26,9 +27,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
-// app.use((err, req, res, next) => {
-//   console.log("ERROR", err.message);
-//   return res.send(err.message);
-// });
+app.use((err, req, res, next) => {
+  console.log("ERROR", err.message);
+  return res.send(err.message);
+});
 
 module.exports = app;
